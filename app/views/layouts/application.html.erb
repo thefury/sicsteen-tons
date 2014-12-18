@@ -2,13 +2,16 @@
 <html>
 <head>
   <title>SixteenTons</title>
+
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/<%= bootstrap_version %>/css/bootstrap.min.css" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
 <body ng-app='sicsteentons'>
 
 <%= yield %>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/<%= ui_bootstrap_version %>/ui-bootstrap-tpls.js"></script>
 </body>
 </html>
