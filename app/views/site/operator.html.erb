@@ -1,2 +1,11 @@
 <h1>Site#operator</h1>
 <p>Find me in app/views/site/operator.html.erb</p>
+
+
+
+<div ng-controller='OperatorCtrl'>
+  <ul>
+    <li ng-repeat='item in data'>{{ item.floor }}</li>
+  </ul>
+  <a href="#" ng-click='onDeleteAll()'>click!</a>
+</div>
