@@ -5,7 +5,7 @@ RSpec.describe Api::V1::RequestsController, :type => :controller do
   describe "index" do
     
     it "should render an array of requests" do
-      request_1 = Request.create floor: 1
+      request_1 = Request.create floor: "1"
 
       get :index
       result = JSON.parse response.body
@@ -14,8 +14,8 @@ RSpec.describe Api::V1::RequestsController, :type => :controller do
     end
 
     it "should render only active requests" do
-      request_1 = Request.create floor: 1
-      request_2 = Request.create floor: 2, deleted: true
+      request_1 = Request.create floor: "1"
+      request_2 = Request.create floor: "2", deleted: true
 
       get :index
       result = JSON.parse response.body
