@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.6'
 
-# This is not usually recommended, but is being implemented this way 
+# This is not usually recommended, but is being implemented this way
 # due to innovation days time restraints
 group :development, :test do
   gem 'sqlite3'
