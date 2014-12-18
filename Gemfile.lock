@@ -160,6 +160,7 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   pg
+  pry
   rails (= 4.1.6)
   rspec-rails (~> 3.0)
   sass-rails (~> 4.0.3)

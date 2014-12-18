@@ -7,6 +7,7 @@ gem 'rails', '4.1.6'
 group :development, :test do
   gem 'sqlite3'
   gem 'guard-rspec', require: false
+  gem 'pry'
 end
 
 group :production do

@@ -5,8 +5,17 @@
 
 <div ng-controller='OperatorCtrl'>
   <h2>Current Requests</h2>
-  <ul>
-    <li ng-repeat='request in requests'>{{ request.floor }}</li>
-  </ul>
-  <a href="#" ng-click='onDeleteAll()'>click!</a>
+  <div ng-repeat='floor in floors'>
+    <div class='floor-number'>
+      {{ floor.id }}
+    </div>
+    <div class='floor-times'>
+      <span am-time-ago='{{ floor.oldest }} '></span>
+      <br />
+      <span am-time-ago='{{ floor.newest }} '></span>
+    </div>
+    <div class=floor-actions'>
+      <button ng-click='onClearFloor(floor)'>Clear</button>
+    </div>
+  </div>
 </div>
