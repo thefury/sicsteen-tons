@@ -1,5 +1,7 @@
 class Request < ActiveRecord::Base
-  validates :floor, numericality: { only_integer: true, greater_than: 0, less_than: 6 }, presence: true
+  validates :floor,
+            presence: true,
+            inclusion: { in: %w[b 1 2 3 4 5] }
 
   scope :active, -> { where(deleted: false) }
 end
