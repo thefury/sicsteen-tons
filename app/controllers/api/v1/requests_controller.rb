@@ -7,7 +7,12 @@ class Api::V1::RequestsController < ApplicationController
   end
 
   def destroy
-    render json: {}
+    @request = Request.find(params[:id])
+    if @request.update_attributes deleted: true
+      render nothing: true, status: 200
+    else
+      render nothing: true, status: 422
+    end
   end
 
   def create

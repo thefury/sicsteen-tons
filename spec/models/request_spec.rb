@@ -50,4 +50,5 @@ RSpec.describe Request, :type => :model do
       expect(Request.active).to include(ar1)
     end
   end
+
 end
