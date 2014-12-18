@@ -5,4 +5,7 @@ class Api::V1::RequestsController < ApplicationController
     render json: {}
   end
 
+  def destroy
+    render json: {}
+  end
 end

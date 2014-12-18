@@ -6,6 +6,7 @@ gem 'rails', '4.1.6'
 # due to innovation days time restraints
 group :development, :test do
   gem 'sqlite3'
+  gem 'guard-rspec', require: false
 end
 
 group :production do
