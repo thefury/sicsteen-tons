@@ -25,4 +25,33 @@ RSpec.describe Api::V1::RequestsController, :type => :controller do
 
   end
 
+  describe "destroy" do
+    
+    it "should destroy a request" do
+      request = Request.create floor: "1"
+
+      delete :destroy, id: request.id
+      
+      expect(Request.find(request.id).deleted).to be true
+    end
+
+    it "should return 200 on successful deletion" do
+      request = Request.create floor: "1"
+
+      delete :destroy, id: request.id
+      
+      expect(response).to have_http_status 200
+    end
+
+    it "should return 422 on unsuccessful deletion" do
+      request = Request.create floor: "1"
+      Request.any_instance.stub(:update_attributes).and_return false
+
+      delete :destroy, id: request.id
+      
+      expect(response).to have_http_status 422
+    end
+
+  end
+
 end
