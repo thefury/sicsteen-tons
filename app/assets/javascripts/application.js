@@ -13,6 +13,7 @@
 //= require angular/angular
 //= require angular/angular-resource
 //= require angular/angular-animate
+//= require ng-rails-csrf
 //= require sicsteentons
 //= require controllers/client-ctrl
 //= require controllers/operator-ctrl

@@ -71,6 +71,7 @@ GEM
     mime-types (2.4.3)
     minitest (5.5.0)
     multi_json (1.10.1)
+    ng-rails-csrf (0.1.0)
     pg (0.17.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -159,6 +160,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   guard-rspec
   jbuilder (~> 2.0)
+  ng-rails-csrf
   pg
   rails (= 4.1.6)
   rspec-rails (~> 3.0)
