@@ -14,10 +14,10 @@
 ActiveRecord::Schema.define(version: 20141218193542) do
 
   create_table "requests", force: true do |t|
-    t.text     "floor",      limit: 255
+    t.text     "floor"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted",                default: false, null: false
+    t.boolean  "deleted",    default: false, null: false
   end
 
   add_index "requests", ["deleted"], name: "index_requests_on_deleted"
