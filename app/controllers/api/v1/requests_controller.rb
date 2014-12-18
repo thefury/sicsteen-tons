@@ -2,7 +2,8 @@ class Api::V1::RequestsController < ApplicationController
   respond_to :json
 
   def index
-    render json: {}
+    @requests = Request.active
+    render json: @requests
   end
 
   def destroy
