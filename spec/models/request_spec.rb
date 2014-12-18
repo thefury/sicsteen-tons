@@ -38,4 +38,18 @@ RSpec.describe Request, :type => :model do
       end
     end
   end
+
+  describe '#active' do
+    let(:ar1) { Request.create floor: 1 }
+    let(:ar2) { Request.create floor: 1 }
+    let(:dr1) { Request.create floor: 1, deleted: true }
+
+    it 'does not show deleted requests' do
+      expect(Request.active).to_not include(dr1)
+    end
+
+    it 'shows active requests' do
+      expect(Request.active).to include(ar1)
+    end
+  end
 end

@@ -11,12 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218164108) do
+ActiveRecord::Schema.define(version: 20141218185843) do
 
   create_table "requests", force: true do |t|
     t.integer  "floor"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "deleted",    default: false, null: false
   end
+
+  add_index "requests", ["deleted"], name: "index_requests_on_deleted"
 
 end
