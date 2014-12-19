@@ -13,7 +13,7 @@ angular.module('sicsteentons').controller 'OperatorCtrl', ['$scope', '$log', 'Fl
     FloorFactory.query (data) ->
       $scope.floors = data.map (element) ->
         {
-          floor: element.floor,
+          id: element.floor,
           count: element.count,
           oldest: new Date(element.oldest),
           newest: new Date(element.newest)
