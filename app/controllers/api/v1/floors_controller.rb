@@ -1,15 +1,14 @@
 class Api::V1::FloorsController < ApplicationController
   respond_to :json
-  
+
   def index
-    response = format_floors_for_api
+    response = format_floors_for_api.reverse
     respond_to do |format|
       format.json {render json: response, status: 200}
     end
   end
 
   def destroy
-    # untested!!!!!!!!!!!
     floor = params[:id]
     Request.where(floor: floor).update_all(deleted: true)
 
@@ -18,7 +17,7 @@ class Api::V1::FloorsController < ApplicationController
 
   private
   def format_floors_for_api
-    Request.floors.map do |floor|
+     Request.floors.map do |floor|
       requests = Request.active_for_floor floor
       if requests.present?
         {floor: floor, oldest: requests[0].created_at, newest: requests[-1].created_at, count: requests.length}
