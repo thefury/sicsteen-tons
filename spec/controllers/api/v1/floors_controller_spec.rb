@@ -10,8 +10,10 @@ RSpec.describe Api::V1::FloorsController, :type => :controller do
   end
 
   describe "GET destroy" do
+    let!(:request1) { Request.create floor: "1" }
+
     it "returns http success" do
-      get :destroy
+      delete :destroy, id: request1.id
       expect(response).to have_http_status(:success)
     end
   end
@@ -32,7 +34,6 @@ RSpec.describe Api::V1::FloorsController, :type => :controller do
       #timecop needed
       get :index, format: :json
       floors = JSON.parse(response.body)
-      binding.pry
       expect(floors[1]["oldest"].to_time).to eq request1.created_at.to_time
     end
     xit "should return a json object with the most recently created active request in :newest" do
