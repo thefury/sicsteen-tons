@@ -9,23 +9,23 @@ angular.module('sicsteentons').controller 'OperatorCtrl', ['$scope', '$log', 'Fl
 
   $scope.fetch = ->
     $log.log 'fetching data...'
+
     FloorFactory.query (data) ->
-      $log.log data
-#      $scope.floors = data
+      $scope.floors = data.map (element) ->
+        {
+          floor: element.floor,
+          count: element.count,
+          oldest: new Date(element.oldest),
+          newest: new Date(element.newest)
+        }
     , ->
       $log.log 'could not load floors'
 
-  $scope.floors = [
-    { id: 'B', count: 1, oldest: new Date(), newest: new Date() },
-    { id: '1', count: 3, oldest: new Date(), newest: new Date() },
-    { id: '2', count: 0, oldest: new Date(), newest: new Date() },
-    { id: '3', count: 3, oldest: new Date(), newest: new Date() },
-    { id: '4', count: 5, oldest: new Date(), newest: new Date() },
-    { id: '5', count: 0, oldest: new Date(), newest: new Date() }
-  ]
 
   $scope.onClearFloor = (floor) ->
     $log.log "Clearing: #{floor.id}"
+    FloorFactory.delete {id: floor.id}, ->
+      $scope.fetch()
 
   $scope.onTick = ->
     $scope.fetch()
