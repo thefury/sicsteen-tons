@@ -9,7 +9,11 @@ class Request < ActiveRecord::Base
 
 
 
-  def self.active_by_floor
-    FLOORS.map{|floor| Request.active.where(floor: floor).order(created_at: :asc)}
+  def self.active_for_floor floor
+    Request.active.where(floor: floor).order(created_at: :asc)
+  end
+
+  def self.floors
+    FLOORS
   end
 end

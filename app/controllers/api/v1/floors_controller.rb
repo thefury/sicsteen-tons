@@ -2,8 +2,7 @@ class Api::V1::FloorsController < ApplicationController
   respond_to :json
   
   def index
-    floors_with_active_requests = Request.active_by_floor
-    response = format_floors_for_api(floors_with_active_requests).compact
+    response = format_floors_for_api
     respond_to do |format|
       format.json {render json: response, status: 200}
     end
@@ -18,9 +17,14 @@ class Api::V1::FloorsController < ApplicationController
   end
 
   private
-  def format_floors_for_api requests_by_floor
-    requests_by_floor.map do |floor|
-      {floor: floor[0].floor, oldest: floor[0].created_at, newest: floor[-1].created_at, count: floor.length} unless floor.blank?
+  def format_floors_for_api
+    Request.floors.map do |floor|
+      requests = Request.active_for_floor floor
+      if requests.present?
+        {floor: floor, oldest: requests[0].created_at, newest: requests[-1].created_at, count: requests.length}
+      else
+        {floor: floor, count: 0}
+      end
     end
   end
 end
