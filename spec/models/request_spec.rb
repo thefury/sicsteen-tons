@@ -51,33 +51,33 @@ RSpec.describe Request, :type => :model do
     end
   end
 
-  describe 'self.active_by_floor' do
+  describe 'self.active_for_floor' do
     let!(:request1) { Request.create floor: "1" }
     let!(:request2) { Request.create floor: "1" }
     let!(:request3) { Request.create floor: "2" }
     let!(:request4) { Request.create floor: "2", deleted: true }
 
     it 'does not show deleted requests' do
-      result = Request.active_by_floor
-      expect(result[2]).to_not include(request4)
+      result = Request.active_for_floor "2"
+      expect(result).to_not include(request4)
     end
 
     it 'does not show requests from other floors' do
-      result = Request.active_by_floor
-      expect(result[2]).to_not include(request1)
+      result = Request.active_for_floor "2"
+      expect(result).to_not include(request1)
     end
 
     it 'does show all active requests from a particular floor' do
-      result = Request.active_by_floor
+      result = Request.active_for_floor "1"
 
-      expect(result[2]).to_not include(request1, request2)
+      expect(result).to include(request1, request2)
     end
 
     it 'does sort requests by creation date' do
       request1.created_at += 1.day
       request1.save
-      result = Request.active_by_floor
-      first_floor_ids = result[1].map{ |request| request.id }
+      result = Request.active_for_floor "1"
+      first_floor_ids = result.map{ |request| request.id }
 
       expect(first_floor_ids).to eq([request2.id, request1.id])
     end
