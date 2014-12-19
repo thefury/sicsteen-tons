@@ -1,19 +1,23 @@
-<h1>Site#operator</h1>
-<p>Find me in app/views/site/operator.html.erb</p>
-
-<div ng-controller='OperatorCtrl'>
+<div ng-controller='OperatorCtrl' class="container">
   <h2>Current Requests</h2>
+
   <div ng-repeat='floor in floors'>
-    <div class='floor-number' ng-class='floor.count > 0 ? "floor-active" : "floor-inactive" '>
-      {{ floor.id }}
-    </div>
-    <div class='floor-times'>
-      <span am-time-ago='{{ floor.oldest }} '></span>
-      <br />
-      <span am-time-ago='{{ floor.newest }} '></span>
-    </div>
-    <div class=floor-actions'>
-      <button ng-click='onClearFloor(floor)'>Clear</button>
+    <div class='row'>
+
+      <div class='col-xs-1'>
+        <span class='floor-number' ng-class='floor.count > 0 ? "text-primary" : "floor-inactive" '>{{ floor.id }}</span>
+      </div>
+
+      <div class='col-xs-4'>
+        oldest: <span class='floor-time text-muted' am-time-ago='{{ floor.oldest }} '></span>
+        <br />
+        newest: <span class='floor-time text-muted' am-time-ago='{{ floor.newest }} '></span>
+      </div>
+
+
+      <div class='col-xs-7'>
+        <a ng-click='onClearFloor(floor)'><i class='fa fa-trash-o fa-3x'></i></a>
+      </div>
     </div>
   </div>
 </div>
