@@ -25,7 +25,7 @@ RSpec.describe Api::V1::FloorsController, :type => :controller do
     it "should return a json object all floors" do
       get :index, format: :json
       floors = JSON.parse(response.body).map{|floor| floor['floor']}
-      expect(floors).to eq ['b', '1','2', '3', '4', '5']
+      expect(floors).to eq ['5', '4','3', '2', '1', 'b']
     end
 
     xit "should return a json object with the first created active request in :oldest" do
@@ -33,7 +33,7 @@ RSpec.describe Api::V1::FloorsController, :type => :controller do
       get :index, format: :json
       floors = JSON.parse(response.body)
       binding.pry
-      expect(floors[1]["oldest"].to_time).to eq request1.created_at.to_time 
+      expect(floors[1]["oldest"].to_time).to eq request1.created_at.to_time
     end
     xit "should return a json object with the most recently created active request in :newest" do
       #timecop needed
@@ -42,7 +42,7 @@ RSpec.describe Api::V1::FloorsController, :type => :controller do
     it 'should return the number of active requests for each floor' do
       get :index, format: :json
       floors = JSON.parse(response.body).map{|floor| floor['count']}
-      expect(floors).to eq [0,2,1,0,0,0]
+      expect(floors).to eq [0,0,0,1,2,0]
 
     end
   end
