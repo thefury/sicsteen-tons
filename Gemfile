@@ -8,6 +8,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
   gem 'guard-rspec', require: false
+  gem 'pry'
 end
 
 group :production do
