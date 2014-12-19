@@ -1,7 +1,19 @@
-<div ng-controller='ClientCtrl'>
-  <ul>
-    <li ng-repeat="floor in floors">
-      <a href="#" ng-click="openRequestOnFloor($index)">{{ floor }}</a>
-    </li>
-  </ul>
+<div class="container">
+  
+  <div class="jumbotron">
+    <h1>Infotech Research Group Elevator App</h1>
+    <p>Our vintage elevator has a real-life operator.  You can ask her to pick you up by clicking your floor.</p>
+  </div>
+  
+  <div ng-controller='ClientCtrl'>
+    <div class=' ng-hide alert alert-success' role='alert' ng-show='recentlyClicked'>
+      <h3>Your request has been sent to the elevator operator!</h3>
+    </div>
+      <ul class="list-unstyled">
+        <li ng-repeat="floor in floors">
+          <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="openRequestOnFloor($index)" >{{ floor }}</button>
+        </li>
+      </ul>
+  </div>
+
 </div>
