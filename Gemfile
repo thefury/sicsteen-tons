@@ -10,6 +10,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'pry'
   gem 'simplecov'
+  gem 'rubycritic'
 end
 
 group :production do
