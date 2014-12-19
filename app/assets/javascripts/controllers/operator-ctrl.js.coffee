@@ -6,7 +6,6 @@ angular.module('sicsteentons').controller 'OperatorCtrl', ['$scope', '$log', 'Fl
   $scope.onDeleteAll = ()->
     $log.log 'onDeleteAll() called'
 
-
   $scope.fetch = ->
     $log.log 'fetching data...'
 
@@ -21,6 +20,10 @@ angular.module('sicsteentons').controller 'OperatorCtrl', ['$scope', '$log', 'Fl
     , ->
       $log.log 'could not load floors'
 
+  $scope.$watch 'floors', (newVal, oldVal) ->
+    if newVal != oldVal
+      $log.log 'changed'
+  , true
 
   $scope.onClearFloor = (floor) ->
     $log.log "Clearing: #{floor.id}"
