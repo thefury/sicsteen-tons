@@ -4,13 +4,15 @@
 <div ng-controller='OperatorCtrl'>
   <h2>Current Requests</h2>
   <div ng-repeat='floor in floors'>
-    <div class='floor-number'>
-      {{ floor.id }}
+    <div class='floor-number' ng-class='floor.count > 0 ? "floor-active" : "floor-inactive" '>
+      {{ floor.floor }}
     </div>
     <div class='floor-times'>
+      <!--
       <span am-time-ago='{{ floor.oldest }} '></span>
       <br />
       <span am-time-ago='{{ floor.newest }} '></span>
+      -->
     </div>
     <div class=floor-actions'>
       <button ng-click='onClearFloor(floor)'>Clear</button>
