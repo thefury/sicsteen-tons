@@ -6,6 +6,7 @@ gem 'rails', '4.1.6'
 # due to innovation days time restraints
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.0'
   gem 'guard-rspec', require: false
 end
 
@@ -28,6 +29,4 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 # gem 'unicorn'
 
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
-end
+gem "ng-rails-csrf"

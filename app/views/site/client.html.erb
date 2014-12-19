@@ -1,2 +1,7 @@
-<h1>Site#client</h1>
-<p>Find me in app/views/site/client.html.erb</p>
+<div ng-controller='ClientCtrl'>
+  <ul>
+    <li ng-repeat="floor in floors">
+      <a href="#" ng-click="openRequestOnFloor($index)">{{ floor }}</a>
+    </li>
+  </ul>
+</div>
