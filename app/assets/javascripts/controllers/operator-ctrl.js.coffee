@@ -1,6 +1,6 @@
-angular.module('sicsteentons').controller 'OperatorCtrl', ['$scope', '$log', 'RequestFactory', '$timeout', ($scope, $log, RequestFactory, $timeout) ->
+angular.module('sicsteentons').controller 'OperatorCtrl', ['$scope', '$log', 'FloorFactory', '$timeout', ($scope, $log, FloorFactory, $timeout) ->
   $log.log 'OperatorCtrl initialized'
-  
+
   $scope.floors = []
 
   $scope.onDeleteAll = ()->
@@ -9,14 +9,16 @@ angular.module('sicsteentons').controller 'OperatorCtrl', ['$scope', '$log', 'Re
 
   $scope.fetch = ->
     $log.log 'fetching data...'
-    $scope.floors = [
-      { id: 'B', count: 1, oldest: new Date(), newest: new Date() },
-      { id: '1', count: 3, oldest: new Date(), newest: new Date() },
-      { id: '2', count: 0, oldest: new Date(), newest: new Date() },
-      { id: '3', count: 3, oldest: new Date(), newest: new Date() },
-      { id: '4', count: 5, oldest: new Date(), newest: new Date() },
-      { id: '5', count: 0, oldest: new Date(), newest: new Date() }
-    ]
+    FloorFactory.query (data) ->
+      $scope.floors = data.map (element) ->
+        {
+          id: element.floor,
+          count: element.count,
+          oldest: new Date(element.oldest),
+          newest: new Date(element.newest)
+        }
+    , ->
+      $log.log 'could not load floors'
 
   $scope.onClearFloor = (floor) ->
     $log.log "Clearing: #{floor.id}"
@@ -26,10 +28,5 @@ angular.module('sicsteentons').controller 'OperatorCtrl', ['$scope', '$log', 'Re
     $timeout($scope.onTick, 5000)
 
   $scope.onTick()
-
-  #$scope.requests = RequestFactory.query (data) ->
-  #  $log.log 'loaded requests'
-  #, ->
-  #  $log.log 'could not load requests'
 
 ]
